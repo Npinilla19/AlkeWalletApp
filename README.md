@@ -1,20 +1,22 @@
-# Alke Wallet App 📱💰
+# Alke Wallet App
 
 Aplicación móvil desarrollada en Android que simula una billetera digital.
 Permite gestionar saldo, visualizar información del usuario y realizar operaciones básicas dentro de la aplicación.
 
 ---
 
-## 📌 Descripción del proyecto
+## Descripción del proyecto
 
 **Alke Wallet** es una aplicación desarrollada como proyecto de aprendizaje en desarrollo móvil Android.
 La aplicación incluye una pantalla de inicio, interfaz gráfica personalizada y manejo de componentes básicos de Android.
 
 ---
 
-## 🖼️ Capturas de pantalla
+## Capturas de pantalla
 
 ### Splash Screen (Pantalla de inicio)
+
+![Pantalla principal](images/solash_screen.png)
 
 ### Pantalla de inicio
 
