@@ -20,19 +20,19 @@ La aplicación incluye una pantalla de inicio, interfaz gráfica personalizada y
 
 ### Pantalla de inicio
 
-![Pantalla inicio]()
+![Pantalla inicio](images/inicio.png)
 
-### Pantalla principal
+### Pantalla Login
 
-![Pantalla principal](images/home.png)
+![Pantalla principal](images/login.png)
 
-### Formulario de usuario
+### Formulario para crear cuenta
 
-![Formulario](images/formulario.png)
+![Formulario](images/Crearcuenta.png)
 
 ---
 
-## ⚙️ Tecnologías utilizadas
+## Tecnologías utilizadas
 
 * Java
 * Android SDK
@@ -42,7 +42,7 @@ La aplicación incluye una pantalla de inicio, interfaz gráfica personalizada y
 
 ---
 
-## 📂 Estructura del proyecto
+## Estructura del proyecto
 
 ```
 AlkeWalletApp
@@ -64,7 +64,7 @@ AlkeWalletApp
 
 ---
 
-## 🚀 Instalación
+## Instalación
 
 1. Clonar el repositorio
 
@@ -78,13 +78,13 @@ git clone https://github.com/tuusuario/alkewalletapp.git
 
 ---
 
-## 👩‍💻 Autor
+## Autor
 
 Nicole Pinilla
 Proyecto realizado como práctica de desarrollo de aplicaciones móviles Android.
 
 ---
 
-## 📄 Licencia
+## Licencia
 
 Este proyecto es de uso educativo.
