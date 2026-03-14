@@ -30,6 +30,19 @@ La aplicación incluye una pantalla de inicio, interfaz gráfica personalizada y
 
 ![Formulario](images/Crearcuenta.png)
 
+### Pantalla de cuenta
+
+![Pantalla principal](images/cuenta.png)
+
+### Pantalla de envio dinero
+
+![Pantalla principal](images/enviarDinero.png)
+
+### Pantalla de ingreso dinero
+
+![Pantalla principal](images/ingresarDinero.png)
+
+
 ---
 
 ## Tecnologías utilizadas
