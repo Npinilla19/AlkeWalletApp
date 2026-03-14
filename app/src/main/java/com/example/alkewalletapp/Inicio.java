@@ -1,0 +1,46 @@
+package com.example.alkewalletapp;
+
+import android.content.Intent;
+import android.os.Bundle;
+import android.widget.Button;
+import android.widget.TextView;
+
+import androidx.activity.EdgeToEdge;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.graphics.Insets;
+import androidx.core.view.ViewCompat;
+import androidx.core.view.WindowInsetsCompat;
+
+public class Inicio extends AppCompatActivity {
+    private Button BtnCrearCuenta;
+    private TextView TxtYaTienesCuenta;
+
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        EdgeToEdge.enable(this);
+        setContentView(R.layout.activity_inicio);
+        ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
+            Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
+            v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
+            return insets;
+        });
+
+        BtnCrearCuenta = findViewById(R.id.BtnCrearCuenta);
+        TxtYaTienesCuenta = findViewById(R.id.TxtYaTienesCuenta);
+
+        BtnCrearCuenta.setOnClickListener(view -> {
+            Intent intent = new Intent(Inicio.this, Signup.class);
+            startActivity(intent);
+
+        });
+
+        TxtYaTienesCuenta.setOnClickListener(view -> {
+            Intent intent = new Intent(Inicio.this, Login.class);
+            startActivity(intent);
+
+        });
+    }
+
+    }
