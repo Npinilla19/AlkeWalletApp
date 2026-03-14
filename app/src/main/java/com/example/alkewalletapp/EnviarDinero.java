@@ -1,8 +1,10 @@
 package com.example.alkewalletapp;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
-import android.widget.TextView;
+import android.widget.ImageView;
+import android.widget.Toast;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -10,21 +12,33 @@ import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
-public class Signup extends AppCompatActivity {
-
-    private Button BtnCrear;
-    private TextView TxtYaTienesCuenta;
-
+public class EnviarDinero extends AppCompatActivity {
+    private Button BtnEnviarD;
+    private ImageView BtnBack;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_signup);
+        setContentView(R.layout.activity_enviar_dinero);
+        
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.main), (v, insets) -> {
             Insets systemBars = insets.getInsets(WindowInsetsCompat.Type.systemBars());
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
+        });
+
+        BtnEnviarD = findViewById(R.id.BtnEnviarD);
+        BtnBack = findViewById(R.id.btnBack);
+
+        BtnBack.setOnClickListener(view -> {
+            Intent intent = new Intent(EnviarDinero.this, Cuenta.class);
+            startActivity(intent);
+        });
+
+
+        BtnEnviarD.setOnClickListener(view -> {
+            Toast.makeText(EnviarDinero.this, "Dinero enviado con éxito", Toast.LENGTH_SHORT).show();
         });
     }
 }

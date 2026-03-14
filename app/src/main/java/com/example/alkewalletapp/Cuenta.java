@@ -1,6 +1,8 @@
 package com.example.alkewalletapp;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.widget.Button;
 
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,6 +11,9 @@ import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
 
 public class Cuenta extends AppCompatActivity {
+    public Button BtnEnviarDinero;
+    public Button Btn_ingresarDinero;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,5 +25,18 @@ public class Cuenta extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        BtnEnviarDinero = findViewById(R.id.BtnEnviarDinero);
+        Btn_ingresarDinero = findViewById(R.id.Btn_ingresarDinero);
+
+        BtnEnviarDinero.setOnClickListener(view -> {
+            Intent intent = new Intent(Cuenta.this, EnviarDinero.class);
+            startActivity(intent);
+        });
+
+        Btn_ingresarDinero.setOnClickListener(view -> {
+            Intent intent = new Intent(Cuenta.this, IngresoDinero.class);
+            startActivity(intent);
+        });
     }
-}
+    }

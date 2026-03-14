@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#FFFFFF"
+    tools:context=".EnviarDinero">
+
+
+    <ImageView
+        android:id="@+id/btnBack"
+        android:layout_width="32dp"
+        android:layout_height="32dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="24dp"
+        android:src="@drawable/ic_back"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#000000" />
+
+    <TextView
+        android:id="@+id/tvTitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Enviar Dinero"
+        android:textColor="#000000"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/btnBack"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/btnBack" />
+
+    <View
+        android:id="@+id/divider"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:layout_marginTop="16dp"
+        android:background="#EEEEEE"
+        app:layout_constraintTop_toBottomOf="@+id/tvTitle" />
+
+
+    <FrameLayout
+        android:id="@+id/flAvatar"
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="32dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/divider">
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@drawable/juanito" />
+
+    </FrameLayout>
+
+    <TextView
+        android:id="@+id/tvDestName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:text="Pepito"
+        android:textColor="#000000"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toEndOf="@+id/flAvatar"
+        app:layout_constraintTop_toTopOf="@+id/flAvatar" />
+
+    <TextView
+        android:id="@+id/tvDestEmail"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="yara_khalil@gmail.com"
+        android:textColor="#999999"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="@+id/tvDestName"
+        app:layout_constraintTop_toBottomOf="@+id/tvDestName" />
+
+
+    <TextView
+        android:id="@+id/tvLabelCantidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="40dp"
+        android:text="Cantidad a transferir"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/flAvatar"
+        app:layout_constraintTop_toBottomOf="@+id/flAvatar" />
+
+    <EditText
+        android:id="@+id/etCantidad"
+        android:layout_width="0dp"
+        android:layout_height="65dp"
+        android:layout_marginTop="8dp"
+        android:background="#63B8FC"
+        android:hint="12.000"
+        android:inputType="numberDecimal"
+        android:paddingHorizontal="20dp"
+        android:textColor="#FFFFFFFF"
+        android:textSize="22sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginEnd="24dp"
+        app:layout_constraintStart_toStartOf="@+id/tvLabelCantidad"
+        app:layout_constraintTop_toBottomOf="@+id/tvLabelCantidad" />
+
+
+    <TextView
+        android:id="@+id/tvLabelNotas"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Comentarios"
+        android:textColor="#000000"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        app:layout_constraintStart_toStartOf="@+id/etCantidad"
+        app:layout_constraintTop_toBottomOf="@+id/etCantidad" />
+
+    <EditText
+        android:id="@+id/etNotas"
+        android:layout_width="0dp"
+        android:layout_height="200dp"
+        android:layout_marginTop="8dp"
+        android:background="@drawable/ovalo_gris"
+        android:gravity="top"
+        android:hint="Agregar comentario(opcional)"
+        android:padding="20dp"
+        android:textColorHint="#CCCCCC"
+        android:textSize="16sp"
+        app:layout_constraintEnd_toEndOf="@+id/etCantidad"
+        app:layout_constraintStart_toStartOf="@+id/etCantidad"
+        app:layout_constraintTop_toBottomOf="@+id/tvLabelNotas" />
+
+
+    <Button
+        android:id="@+id/BtnEnviarD"
+        android:layout_width="0dp"
+        android:layout_height="60dp"
+        android:layout_marginHorizontal="24dp"
+        android:layout_marginBottom="32dp"
+        android:backgroundTint="#63B8FC"
+        android:text="Enviar Dinero"
+        android:textAllCaps="false"
+        android:textSize="16sp"
+        app:cornerRadius="12dp"
+        app:icon="@drawable/send_icon"
+        app:iconGravity="textStart"
+        app:iconPadding="12dp"
+        app:iconTint="#FFFFFFFF"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
