@@ -12,6 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.AlkeWalletApp">
         <activity
+            android:name=".Perfil"
+            android:exported="false" />
+        <activity
             android:name=".EnviarDinero"
             android:exported="false" />
         <activity
