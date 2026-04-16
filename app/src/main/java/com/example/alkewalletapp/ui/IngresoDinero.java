@@ -1,4 +1,4 @@
-package com.example.alkewalletapp;
+package com.example.alkewalletapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.alkewalletapp.R;
+import com.example.alkewalletapp.data.repository.WalletRepository;
 
 public class IngresoDinero extends AppCompatActivity {
 
@@ -31,19 +34,19 @@ public class IngresoDinero extends AppCompatActivity {
             return insets;
         });
 
-        // Vincular vistas
+
         BtnIngresoD = findViewById(R.id.BtnIngresoD);
         BtnBack = findViewById(R.id.btnBack);
         etCantidad = findViewById(R.id.etCantidad);
 
-        // Volver a la pantalla Cuenta
+
         BtnBack.setOnClickListener(view -> {
             Intent intent = new Intent(IngresoDinero.this, Cuenta.class);
             startActivity(intent);
             finish();
         });
 
-        // Lógica de Ingreso de Dinero (Administración de fondos - Kotlin Integration)
+
         BtnIngresoD.setOnClickListener(view -> {
             String montoStr = etCantidad.getText().toString();
             
@@ -51,12 +54,12 @@ public class IngresoDinero extends AppCompatActivity {
                 try {
                     double monto = Double.parseDouble(montoStr);
                     
-                    // LLAMADA A LA LÓGICA DE NEGOCIO EN KOTLIN
-                    WalletManager.INSTANCE.deposit(monto);
+
+                    WalletRepository.INSTANCE.deposit(monto);
                     
                     Toast.makeText(IngresoDinero.this, "¡Dinero ingresado con éxito!", Toast.LENGTH_SHORT).show();
                     
-                    // Volver al Inicio para ver el nuevo saldo
+
                     Intent intent = new Intent(IngresoDinero.this, Cuenta.class);
                     startActivity(intent);
                     finish();

@@ -1,4 +1,4 @@
-package com.example.alkewalletapp;
+package com.example.alkewalletapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.alkewalletapp.R;
+import com.example.alkewalletapp.data.repository.WalletRepository;
 
 public class EnviarDinero extends AppCompatActivity {
     private Button BtnEnviarD;
@@ -30,19 +33,19 @@ public class EnviarDinero extends AppCompatActivity {
             return insets;
         });
 
-        // Vincular vistas
+
         BtnEnviarD = findViewById(R.id.BtnEnviarD);
         BtnBack = findViewById(R.id.btnBack);
         etCantidad = findViewById(R.id.etCantidad);
 
-        // Volver a la pantalla anterior
+
         BtnBack.setOnClickListener(view -> {
             Intent intent = new Intent(EnviarDinero.this, Cuenta.class);
             startActivity(intent);
             finish();
         });
 
-        // Lógica de Retiro/Envío de Dinero (Administración de fondos - Kotlin Integration)
+
         BtnEnviarD.setOnClickListener(view -> {
             String montoStr = etCantidad.getText().toString();
             
@@ -50,13 +53,13 @@ public class EnviarDinero extends AppCompatActivity {
                 try {
                     double monto = Double.parseDouble(montoStr);
                     
-                    // LLAMADA A LA LÓGICA DE NEGOCIO EN KOTLIN (Withdraw)
-                    boolean exito = WalletManager.INSTANCE.withdraw(monto);
+
+                    boolean exito = WalletRepository.INSTANCE.withdraw(monto);
                     
                     if (exito) {
                         Toast.makeText(EnviarDinero.this, "¡Dinero enviado con éxito!", Toast.LENGTH_SHORT).show();
                         
-                        // Volver al Inicio para ver el saldo actualizado
+
                         Intent intent = new Intent(EnviarDinero.this, Cuenta.class);
                         startActivity(intent);
                         finish();

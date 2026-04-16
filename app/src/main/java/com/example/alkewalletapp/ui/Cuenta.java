@@ -1,6 +1,5 @@
-package com.example.alkewalletapp;
+package com.example.alkewalletapp.ui;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -15,6 +14,11 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+import androidx.lifecycle.ViewModelProvider;
+
+import com.example.alkewalletapp.R;
+import com.example.alkewalletapp.model.Transaction;
+import com.example.alkewalletapp.ui.viewmodel.WalletViewModel;
 
 import java.util.List;
 import java.util.Locale;
@@ -25,6 +29,7 @@ public class Cuenta extends AppCompatActivity {
     public TextView tvBalanceAmount;
     public ImageView ivProfile;
     public LinearLayout llTransactionsContainer;
+    private WalletViewModel viewModel;
 
 
     @Override
@@ -39,20 +44,23 @@ public class Cuenta extends AppCompatActivity {
             return insets;
         });
 
-        // Vincular vistas
+
+        viewModel = new ViewModelProvider(this).get(WalletViewModel.class);
+
         BtnEnviarDinero = findViewById(R.id.BtnEnviarDinero);
         Btn_ingresarDinero = findViewById(R.id.Btn_ingresarDinero);
         tvBalanceAmount = findViewById(R.id.tvBalanceAmount);
         ivProfile = findViewById(R.id.ivProfile);
         llTransactionsContainer = findViewById(R.id.llTransactionsContainer);
 
-        // NAVEGACIÓN AL PERFIL
+
+        setupObservers();
+
+
         ivProfile.setOnClickListener(v -> {
             Intent intent = new Intent(Cuenta.this, Perfil.class);
             startActivity(intent);
         });
-
-        updateUI();
 
         BtnEnviarDinero.setOnClickListener(view -> {
             Intent intent = new Intent(Cuenta.this, EnviarDinero.class);
@@ -63,29 +71,39 @@ public class Cuenta extends AppCompatActivity {
             Intent intent = new Intent(Cuenta.this, IngresoDinero.class);
             startActivity(intent);
         });
+
+
+        viewModel.fetchTransactionsFromApi();
     }
 
-    private void updateUI() {
-        updateBalance();
-        renderTransactions();
+    private void setupObservers() {
+
+        viewModel.getTransactions().observe(this, this::renderTransactions);
+
+
+        viewModel.getBalance().observe(this, balance -> {
+            updateBalanceUI(balance, viewModel.isDollar().getValue());
+        });
+        
+        viewModel.isDollar().observe(this, isDollar -> {
+            updateBalanceUI(viewModel.getBalance().getValue(), isDollar);
+        });
     }
 
-    private void updateBalance() {
-        double currentBalance = WalletManager.INSTANCE.getBalance();
-        boolean isDollar = WalletManager.INSTANCE.isDollar();
+    private void updateBalanceUI(Double balance, Boolean isDollar) {
+        if (balance == null || isDollar == null) return;
         
         if (isDollar) {
-            tvBalanceAmount.setText(String.format(Locale.US, "$%.2f", currentBalance));
+            tvBalanceAmount.setText(String.format(Locale.US, "$%.2f", balance));
         } else {
-            tvBalanceAmount.setText(String.format(Locale.getDefault(), "$%,.0f", currentBalance).replace(',', '.'));
+            tvBalanceAmount.setText(String.format(Locale.getDefault(), "$%,.0f", balance).replace(',', '.'));
         }
     }
 
-    private void renderTransactions() {
-        if (llTransactionsContainer == null) return;
+    private void renderTransactions(List<Transaction> transactions) {
+        if (llTransactionsContainer == null || transactions == null) return;
         
         llTransactionsContainer.removeAllViews();
-        List<Transaction> transactions = WalletManager.INSTANCE.getTransactions();
         LayoutInflater inflater = LayoutInflater.from(this);
 
         for (Transaction transaction : transactions) {
@@ -102,7 +120,7 @@ public class Cuenta extends AppCompatActivity {
             String sign = transaction.isIncome() ? "+" : "-";
             tvAmount.setText(String.format(Locale.getDefault(), "%s$%,.0f", sign, transaction.getAmount()).replace(',', '.'));
             
-            // Icono según sea ingreso o egreso
+
             ivIcon.setImageResource(transaction.isIncome() ? R.drawable.martita : R.drawable.juanito);
 
             llTransactionsContainer.addView(itemView);
@@ -112,6 +130,6 @@ public class Cuenta extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        updateUI();
+        viewModel.loadLocalData();
     }
 }

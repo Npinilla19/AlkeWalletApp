@@ -1,4 +1,4 @@
-package com.example.alkewalletapp;
+package com.example.alkewalletapp.ui;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -12,6 +12,9 @@ import androidx.appcompat.widget.SwitchCompat;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
+import com.example.alkewalletapp.R;
+import com.example.alkewalletapp.data.repository.WalletRepository;
 
 public class Perfil extends AppCompatActivity {
 
@@ -35,12 +38,12 @@ public class Perfil extends AppCompatActivity {
         btnLogout = findViewById(R.id.btnLogout);
         switchCurrency = findViewById(R.id.switchCurrency);
 
-        // Estado inicial del Switch según el WalletManager
-        switchCurrency.setChecked(WalletManager.INSTANCE.isDollar());
 
-        // Manejo del Switch para cambiar la divisa
+        switchCurrency.setChecked(WalletRepository.INSTANCE.isDollar());
+
+
         switchCurrency.setOnCheckedChangeListener((buttonView, isChecked) -> {
-            WalletManager.INSTANCE.toggleCurrency();
+            WalletRepository.INSTANCE.toggleCurrency();
             String msg = isChecked ? "Saldo ahora en Dólares" : "Saldo ahora en Pesos Chilenos";
             Toast.makeText(this, msg, Toast.LENGTH_SHORT).show();
         });
